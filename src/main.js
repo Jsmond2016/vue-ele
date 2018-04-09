@@ -6,9 +6,7 @@ import ratings from './components/ratings/ratings'
 import seller from './components/seller/seller'
 
 Vue.config.productionTip = false
-
-Vue.use(VueRouter)
-
+Vue.use(VueRouter);
 /* eslint-disable no-new */
 
 let routes = [
@@ -19,10 +17,11 @@ let routes = [
 ]
 
 let router = new VueRouter({
-  routes // （缩写）相当于 routes: routes
+  routes
 })
 
 new Vue({
   el: '#app',
-  router
+  router,
+  render: h => h(App)
 })
