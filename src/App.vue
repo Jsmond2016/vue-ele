@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div>
      <v-header>i am header</v-header>
      <div class="tab">
        <div class="tab-item">
@@ -27,13 +27,12 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .app
-    .tab
-      display: flex
-      width: 100%
-      height: 40px
-      line-height: 40px
-      .tab-item
-        flex: 1
-        text-align: center
+  .tab
+    display: flex
+    width: 100%
+    height: 40px
+    line-height: 40px
+    .tab-item
+      flex: 1
+      text-align: center
 </style>
