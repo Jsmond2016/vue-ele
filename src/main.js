@@ -22,7 +22,7 @@ let router = new VueRouter({
   routes,
   linkActiveClass: 'active'
 })
-router.push('/goods')
+ // router.push('/goods')
 new Vue({
   el: '#app',
   router,
