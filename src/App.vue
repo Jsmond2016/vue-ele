@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-header :seller="seller"></v-header>
      <div class="tab">
        <div class="tab-item">
          <router-link to="/goods">商品</router-link>
