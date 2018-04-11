@@ -19,13 +19,13 @@
       </div>
         <div v-if="seller.supports" class="support-count">
           <span class="count">{{seller.supports.length}}个</span>
-          <i class="icon-keyboard-arrow_right"></i>
+          <i class="icon-keyboard_arrow_right"></i>
         </div>
     </div>
     <div class="bulletin-wrapper">
       <span class="bulletin-title"></span>
       <span class="bulletin-text">{{seller.bulletin}}</span>
-      <i class="icon-keyboard-arrow_right"></i>
+      <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="background">
       <img :src="seller.avatar" width="100%"  height="100%">
@@ -114,7 +114,7 @@
         .count
           font-size: 10px
           vertical-align: top
-        .icon-keyboard-arrow_right
+        .icon-keyboard_arrow_right
           margin-left: 2px
           font-size: 10px
           line-height: 24px
