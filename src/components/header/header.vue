@@ -13,8 +13,8 @@
           {{seller.description}} / {{seller.deliveryTime}}
         </div>
         <div v-if="seller.supports" class="support">
-          <span class="icon"></span>
-          <span class="text">{{seller.supports[0].decription}}</span>
+          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+          <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
       <div class="bullentin-wrapper"></div>
@@ -28,6 +28,9 @@
         seller: {
           type: Object
         }
+      },
+      created() {
+        this.classMap = ['decrease', 'discount', 'gurantee', 'special']
       }
     }
 </script>
@@ -52,7 +55,7 @@
         .title
           margin: 2px 0 8px 0
           .brand
-            disbplay: inline-block
+            display: inline-block
             width: 30px
             height: 18px
             vertical-align: top
@@ -70,6 +73,7 @@
         .support
           .icon
             display: inline-block
+            vertical-align: top
             width: 12px
             height: 12px
             margin-right: 4px
@@ -84,4 +88,7 @@
             &.special
               bg-image('invoice_1')
 
+          .text
+            font-size: 12px
+            line-height: 12px
 </style>
