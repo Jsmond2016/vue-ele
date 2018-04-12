@@ -1,6 +1,6 @@
 <template>
   <div class="star" :class="starType">
-    <span v-for="itemClasses" :class="itemClass" class="star-item"></span>
+    <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" :key="index"></span>
   </div>
 </template>
 
@@ -15,19 +15,29 @@
           size: {
             type: Number
           },
-          scroe: {
+          score: {
             type: Number
           }
         },
-      compted: {
+      computed: {
           starType() {
             return 'star-' + this.size
           },
           itemClasses() {
             let result = []
-            let score = MATH.floor(5this.score * 2) / 2
-            let hashDecimal = score % 1 !=0
-            let intege =
+            let score = Math.floor(this.score * 2) / 2
+            let hashDecimal = score % 1 !== 0
+            let integer = Math.floor(score)
+            for (let i = 0; i < integer; i++) {
+              result.push(CLS_ON)
+            }
+            if (hashDecimal) {
+              result.push(CLS_HALF)
+            }
+            while (result.length < LENGTH) {
+              result.push(CLS_OFF)
+            }
+            return result
           }
       }
     }
@@ -39,14 +49,14 @@
   .star
     font-size: 0
     .star-item
-      display: inlin-block
+      display: inline-block
       background-repeat: no-repeat
     &.star-48
       .star-item
         width: 20px
         height: 20px
         margin-right: 22px
-        bagroun-size: 20px 20px
+        background-size: 20px 20px
         &.on
           bg-image('star48_on')
         &.half
@@ -58,7 +68,7 @@
         width: 15px
         height: 15px
         margin-right: 16px
-        bagroun-size: 15px 15px
+        background-size: 15px 15px
         &.on
           bg-image('star36_on')
         &.half
@@ -70,7 +80,7 @@
         width: 10px
         height: 10px
         margin-right: 3px
-        bagroun-size: 10px 10px
+        background-size: 10px 10px
         &.on
           bg-image('star24_on')
         &.half
