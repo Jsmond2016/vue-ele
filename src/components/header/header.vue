@@ -34,7 +34,20 @@
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1>{{seller.bulletin}}</h1>
-          <star :size="48" :score="seller.score"></star>
+          <div class="star-wrapper">
+            <star :size="48" :score="seller.score"></star>
+          </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
+          <ul v-if="seller.supports" class="supports">
+            <li class="support-item" v-for="(item,index) in seller.supports">
+              <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+              <span class="text">{{seller.supports[index].description}}</span>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="detail-close">
@@ -64,7 +77,7 @@
         }
       },
       created() {
-        this.classMap = ['decrease', 'discount', 'gurantee', 'special']
+        this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
       },
       components: {
         star
@@ -198,7 +211,53 @@
           line-height: 16px
           text-align: center
           font-size: 16px
-
+        .star-wrapper
+          margin-top: 18px
+          padding: 2px 0
+          text-align: center
+        .title
+          display: flex
+          width: 80%
+          margin: 30px auto 24px auto
+          .line
+            flex: 1
+            position: relative
+            top: -6px
+            border-bottom: 1px solid rgba(255,255,255,0.2)
+          .text
+            padding: 0 12px
+            font-size: 14px
+            font-weight: 700
+        .supports
+          width:  80%
+          margin: 0 auto
+          .support-item
+            padding: 0 12px
+            margin-bottom: 12px
+            font-size: 0
+            &:last-child
+              margin-bottom: 0
+            .icon
+              display: inline-block
+              width: 16px
+              height: 16px
+              vertical-align: top
+              margin-right: 6px
+              background-size: 16px 16px
+              background-repeat: no-repeat
+              &.decrease
+                bg-image('decrease_2')
+              &.discount
+                bg-image('discount_2')
+              &.guarantee
+                bg-image('guarantee_2')
+              &.special
+                bg-image('special_2')
+              &.invoice
+                bg-image('invoice_2')
+            .text
+              line-height: 16px
+              font-size: 12px
     .detail-close
       position: relative
       width: 32px
