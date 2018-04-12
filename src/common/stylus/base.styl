@@ -5,6 +5,16 @@ body.heml
   font-weight: 200
   font-family: 'PingFang SC','STHeightSC-Light','Helvetical-Light',arial
 
+.clearfix
+  display: inline-block
+  &:after
+    display: block
+    content: ''
+    clear: both
+    height: 0
+    line-height: 0
+    visibility: hidden
+
 @media(-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
   .border-1px
     &::after
