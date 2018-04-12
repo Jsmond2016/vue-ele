@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper" v-el:menu-wrapper>
       <ul>
         <li v-for="(item,index) in goods" class="menu-item" :key="index">
           <span class="text border-1px">
@@ -10,7 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
+    <div class="foods-wrapper" v-el:foods-wrapper>
       <ul>
         <li v-for="(item,index) in goods" class="food-list" :key="index">
           <h1 class="title">{{item .name}}</h1>
@@ -40,6 +40,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll'
+
     const ERR_OK = 0
 
     export default {
@@ -53,6 +55,13 @@
           goods: []
         }
       },
+      methods: {
+        _initScroll() {
+          this.menuScroll = new BScroll(this.menuWrapper, {})
+
+          this.foodsScroll = new BScroll(this.foodsWrapper, {})
+        }
+      },
       created() {
         this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
 
@@ -60,7 +69,9 @@
           response = response.body
           if (response.errno === ERR_OK) {
             this.goods = response.data
-            console.log(this.goods)
+            this.$nextTick(() => { /*深入响应式原理,在下次 DOM 更新循环结束之后执行延迟回调*/
+              this._initScroll()
+            })
           }
         })
       }
