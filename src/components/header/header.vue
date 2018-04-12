@@ -33,7 +33,7 @@
     <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
-          <h1>{{seller.bulletin}}</h1>
+          <h1>{{seller.name}}</h1>
           <div class="star-wrapper">
             <star :size="48" :score="seller.score"></star>
           </div>
@@ -43,14 +43,22 @@
             <div class="line"></div>
           </div>
           <ul v-if="seller.supports" class="supports">
-            <li class="support-item" v-for="(item,index) in seller.supports">
+            <li class="support-item" v-for="(item , index) in seller.supports" :key="index">
               <span class="icon" :class="classMap[seller.supports[index].type]"></span>
               <span class="text">{{seller.supports[index].description}}</span>
             </li>
           </ul>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+          </div>
+          <div class="bulletin">
+            <p class="content">{{seller.bulletin}}</p>
+          </div>
         </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close"  @click="hideDetail">
         <i class="icon-close"></i>
       </div>
     </div>
@@ -74,6 +82,9 @@
       methods: {
         showDetail() {
           this.detailShow = true
+        },
+        hideDetail() {
+          this.detailShow = false
         }
       },
       created() {
@@ -207,6 +218,8 @@
       .detail-main
         margin-top: 64px
         padding-bottom: 64px
+        h1
+          text-align: center
         .name
           line-height: 16px
           text-align: center
@@ -258,6 +271,13 @@
             .text
               line-height: 16px
               font-size: 12px
+        .bulletin
+          width: 80%
+          margin: 0 auto
+          .content
+            padding: 0 12px
+            line-height: 24px
+            font-size: 12px
     .detail-close
       position: relative
       width: 32px
