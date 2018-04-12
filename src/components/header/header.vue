@@ -216,6 +216,7 @@
     transition: all 0.5s
     opacity: 1
     background: rgba(7, 17, 27, 0.8)
+    backdrop-filter: blur(10px)
     &.fade-enter-active, &.fade-leave-active
       transition: all 0.5s
     &.fade-enter, &.fade-leave-active
