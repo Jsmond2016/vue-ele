@@ -69,10 +69,9 @@
           })
         },
         _caculateHeight() {
-          let foodList = this.$refs.foodsWrapper.getElementsByClassName('foods-list-hook')
+          let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook')
           let height = 0
           this.listHeight.push(height)
-
           for (let i = 0; i < foodList.length; i++) {
             let item = foodList[i]
             height += item.clientHeight
@@ -86,8 +85,7 @@
             let height1 = this.listHeight[i]
             let height2 = this.listHeight[i + 1]
 
-            if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
-              console.log(i)
+            if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
               return i
             }
           }
