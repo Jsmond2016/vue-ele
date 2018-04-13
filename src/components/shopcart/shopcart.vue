@@ -4,19 +4,35 @@
         <div class="content-left">
           <div class="logo-wrapper">
             <div class="logo">
-              <span class="icon-shopping-cart"></span>
+              <span class="icon-shopping_cart"></span>
             </div>
           </div>
-          <div class="price"></div>
-          <div class="desc"></div>
+          <div class="price">0元</div>
+          <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
         </div>
-        <div class="content-right"></div>
+        <div class="content-right">
+          <div class="pay">
+            起送费￥{{minPrice}}元
+          </div>
+        </div>
       </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    export default {}
+    export default {
+      props: {
+        deliveryPrice: {
+          type: Number,
+          default: 0
+        },
+        minPrice: {
+          type: Number,
+          default: 0
+        }
+
+      }
+    }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
@@ -50,12 +66,12 @@
               border-radius: 50%
               text-align: center
               background: #2b343c
-              .icon-shopping-cart
+              .icon-shopping_cart
                 font-size: 24px
                 color: #80858a
                 width: 24px
-                height: 24px
-                line-height: 24px
+                height: 44px
+                line-height: 44px
           .price
             display: inline-block
             vertical-align: top
@@ -64,11 +80,25 @@
             padding-right: 12px
             box-sizing: border-box
             border-right: 1px solid rgba(255,255,255,0.1)
-            fnot-size: 16px
+            font-size: 16px
             font-weight: 700
+            color: rgba(255,255,255,0.4)
           .desc
             display: inline-block
+            vertical-align: top
+            margin: 12px 0 0 12px
+            line-height: 24px
+            font-size: 12px
+            color: rgba(255,255,255,0.4)
         .content-right
           flex: 0 0 105px
           width: 105px
+          color: rgba(255,255,255,0.4)
+          .pay
+            height: 48px
+            line-height: 48px
+            text-align: center
+            font-size: 12px
+            font-weight: 700
+            background: #2b343b
 </style>
