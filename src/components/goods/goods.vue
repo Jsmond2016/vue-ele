@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
-        <li v-for="(item,index) in goods" class="menu-item" :key="index">
+        <li v-for="(item,index) in goods" class="menu-item" :key="index" :class="{'current':currentIndex===index}">
           <span class="text border-1px">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -12,7 +12,7 @@
     </div>
     <div class="foods-wrapper" ref="foodsWrapper">
       <ul>
-        <li v-for="(item,index) in goods" class="food-list" :key="index">
+        <li v-for="(item,index) in goods" class="food-list food-list-hook" :key="index" >
           <h1 class="title">{{item .name}}</h1>
           <ul>
             <li v-for="(food,index) in item.foods" class="food-item border-1px" :key="index">
@@ -50,14 +50,48 @@
       },
       data() {
         return {
-          goods: []
+          goods: [],
+          listHeight: [],
+          scrollY: 0
+
         }
       },
       methods: {
         _initScroll() {
           this.menuScroll = new BScroll(this.$refs.menuWrapper, {})
 
-          this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {})
+          this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
+            probeType: 3
+          })
+
+          this.foodsScroll.on('scroll', (pops) => {
+            this.scrollY = Math.abs(Math.round(pops.y))
+          })
+        },
+        _caculateHeight() {
+          let foodList = this.$refs.foodsWrapper.getElementsByClassName('foods-list-hook')
+          let height = 0
+          this.listHeight.push(height)
+
+          for (let i = 0; i < foodList.length; i++) {
+            let item = foodList[i]
+            height += item.clientHeight
+            this.listHeight.push(height)
+          }
+        }
+      },
+      computed: {
+        currentIndex() {
+          for (let i = 0; i < this.listHeight.length; i++) {
+            let height1 = this.listHeight[i]
+            let height2 = this.listHeight[i + 1]
+
+            if (!height2 || (this.scrollY > height1 && this.scrollY < height2)) {
+              console.log(i)
+              return i
+            }
+          }
+          return 0
         }
       },
       created() {
@@ -69,6 +103,7 @@
             this.goods = response.data
             this.$nextTick(() => { /* 深入响应式原理,在下次 DOM 更新循环结束之后执行延迟回调,目的是我了获得高度 */
               this._initScroll()
+              this._caculateHeight()
             })
           }
         })
@@ -96,6 +131,14 @@
         width: 56px
         line-height: 14px
         padding: 0 12px
+        &.current
+          position: relative
+          z-index: 10
+          margin-top: -1px
+          background: #fff
+          font-weight: 700
+          .text
+            border-none()
         .icon
           display: inline-block
           vertical-align: top
@@ -155,6 +198,7 @@
           color: rgb(147,153,159)
         .desc
           margin-bottom: 8px
+          line-height: 12px
         .extra
           .count
             margin-right: 12px
