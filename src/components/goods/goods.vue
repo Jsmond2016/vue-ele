@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper" v-el:menu-wrapper>
+    <div class="menu-wrapper" ref="menuWrapper">
       <ul>
         <li v-for="(item,index) in goods" class="menu-item" :key="index">
           <span class="text border-1px">
@@ -10,7 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper" v-el:foods-wrapper>
+    <div class="foods-wrapper" ref="foodsWrapper">
       <ul>
         <li v-for="(item,index) in goods" class="food-list" :key="index">
           <h1 class="title">{{item .name}}</h1>
@@ -57,9 +57,9 @@
       },
       methods: {
         _initScroll() {
-          this.menuScroll = new BScroll(this.menuWrapper, {})
+          this.menuScroll = new BScroll(this.$refs.menuWrapper, {})
 
-          this.foodsScroll = new BScroll(this.foodsWrapper, {})
+          this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {})
         }
       },
       created() {
@@ -69,7 +69,7 @@
           response = response.body
           if (response.errno === ERR_OK) {
             this.goods = response.data
-            this.$nextTick(() => { /*深入响应式原理,在下次 DOM 更新循环结束之后执行延迟回调*/
+            this.$nextTick(() => { /* 深入响应式原理,在下次 DOM 更新循环结束之后执行延迟回调,目的是我了获得高度 */
               this._initScroll()
             })
           }
