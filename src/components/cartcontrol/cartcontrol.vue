@@ -42,7 +42,7 @@
     .cart-decrease
       display: inline-block
       padding: 6px
-      transition: all .4s linear
+      transition: all 0.3s linear
       opacity: 1
       transform: translate3D(0,0,0)
       .inner
