@@ -66,6 +66,7 @@
       },
       methods: {
         drop(el) {
+          console.log(el)
           for (let i = 0; i < this.balls.length; i++) {
             let ball = this.balls[i]
             if (!ball.show) {
@@ -75,10 +76,8 @@
               return 0
             }
           }
-          console.log(el)
         },
         beforeDrop(el) {
-          console.log('beforeDrop')
           let count = this.balls.length
           while (count--) {
             let ball = this.balls[count]
@@ -95,9 +94,8 @@
             }
           }
         },
-        dropping(el) {
+        dropping(el, done) {
           /* eslint-disable no-unused-vars */
-          console.log('dropping')
           let rf = el.offsetHeight
           this.$nextTick(() => {
             el.style.webkitTransform = 'translate3d(0,0,0)'
@@ -105,10 +103,10 @@
             let inner = el.getElementsByClassName('inner-hook')[0]
             inner.style.webkitTransform = 'translate3d(0,0,0)'
             inner.style.transform = 'translate3d(0,0,0)'
+            el.addEventListener('transitionend', done)
           })
         },
         afterDrop(el) {
-          console.log('afterDrop')
           let ball = this.dropBalls.shift()
           if (ball) {
             ball.show = false
