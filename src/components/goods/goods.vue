@@ -95,11 +95,7 @@
           this.foodsScroll.scrollToElement(el, 300)
         },
         _drop(target) {
-          console.log('drop')
           this.$refs.shopcart.drop(target)
-        },
-        xxx() {
-          console.log(111)
         }
       },
       computed: {
