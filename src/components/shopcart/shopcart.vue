@@ -27,7 +27,7 @@
             </div>
           </div>
           <transition name="fold">
-            <div class="shopcart-list" v-show="listShow">
+            <div class="shopcart-list" v-show="listShow" >
               <div class="list-header">
                 <h1 class="title2">购物车</h1>
                 <span class="empty" @click="empty">清空</span>
@@ -143,12 +143,12 @@
             el.style.display = 'none'
           }
         },
-        toggleList(event) {
-          event.preventDefault()
+        toggleList() {
           if (!this.totalCount) {
             return 0
           }
           this.fold = !this.fold
+          this.listShow = !this.listShow
         },
         empty() {
           this.selectFoods.forEach((food) => {
@@ -208,7 +208,7 @@
               this.fold = true
               return false
             }
-            let show = !this.fold
+            let show = this.fold
             if (show) {
               this.$nextTick(() => {
                 if (!this.scroll) {
