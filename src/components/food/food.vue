@@ -19,6 +19,10 @@
               <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
             </div>
           </div>
+           <div class="cartcontrol-wrapper">
+             <cartcontrol :food="food"></cartcontrol>
+           </div>
+           <div class="buy" @click="addFirst" v-show="!food.count || food.count === 0" >加入购物车</div>
          </div>
        </div>
      </transition>
@@ -27,6 +31,8 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
+  import cartcontrol from 'components/cartcontrol/cartcontrol'
+  import Vue from 'vue'
     export default {
       props: {
         food: {
@@ -54,7 +60,17 @@
         hide() {
           console.log(1)
           this.showFlag = false
+        },
+        addFirst(event) {
+          if (!event._constructed) {
+            return 0
+          }
+          this.$emit('cartadd', event.target)
+          Vue.set(this.food, 'count', 1)
         }
+      },
+      components: {
+        cartcontrol
       }
     }
 </script>
@@ -120,4 +136,23 @@
           text-decoration: line-through
           font-size: 10px
           color: rgb(147,153,159)
+    .cartcontrol-wrapper
+      position: absolute
+      right: 12px
+      bottom: 12px
+      bottom: 12px
+    .buy
+      position: absolute
+      right: 18px
+      bottom: 18px
+      z-index: 10
+      height: 24px
+      line-height: 24px
+      padding: 0 24px
+      box-sizing: border-box
+      font-size: 10px
+      border-radius: 12px
+      color: white
+      background: rgb(0,160,220)
+
 </style>
