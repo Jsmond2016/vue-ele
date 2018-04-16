@@ -97,6 +97,7 @@
           this.foodsScroll.scrollToElement(el, 300)
         },
         _drop(target) {
+          console.log(1111111)
           this.$refs.shopcart.drop(target)
         },
         selectFood(food, event) {
