@@ -64,15 +64,15 @@
           onlyContent: true,
           desc: {
             all: '全部',
-            positive: '满意',
-            negative: '吐槽'
+            positive: '推荐',
+            negactive: '吐槽'
           }
         }
       },
       methods: {
         show() {
           this.showFlag = true
-          this.selectType = ALL
+          this.selectType = 0
           this.onlyContent = true
           this.$nextTick(() => {
             if (!this.scroll) {

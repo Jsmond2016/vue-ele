@@ -1,9 +1,9 @@
 <template>
     <div class="ratingselect">
       <div class="rating-type border-1px">
-        <span  class="block positive">{{desc.all}}</span>
-        <span  class="block negative">{{desc.positive}}</span>
-        <span  class="block negative">{{desc.negative}}</span>
+        <span  class="block positive" :class="{'active': selectType===2}">{{desc.all}}<span class="count">47</span></span>
+        <span  class="block positive" :class="{'active': selectType===0}">{{desc.positive}}<span class="count">40</span></span>
+        <span  class="block negactive" :class="{'active': selectType===1}">{{desc.negactive}}<span class="count">7</span></span>
       </div>
       <div class="switch">
         <span class="icon-check_circle"></span>
@@ -13,9 +13,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-    /* const POSITIVE = 0
-    const NEGATIVE = 1 */
-     const ALL = 2
+    const POSITIVE = 0
+    const NEGATIVE = 1
+    const ALL = 2
     export default {
       props: {
         ratings: {
@@ -38,7 +38,7 @@
             return {
               all: '全部',
               positive: '满意',
-              negative: '吐槽'
+              negactive: '吐槽'
             }
           }
         }
@@ -56,5 +56,23 @@
       border-1px(rgba(7,17,27,0.1))
       font-size: 0
       .block
-        
+        display: inline-block
+        padding: 8px 12px
+        border-radius: 1px
+        font-size: 12px
+        margin-right: 8px
+        color: rgb(77,85,93)
+        &.active
+          color: black
+        .count
+          font-size: 8px
+          margin-left: 2px
+        &.positive
+          background: rgba(0,160,220,0.2)
+          &.active
+            background: rgb(0,160,220)
+        &.negactive
+          background: rgba(0,160,220,0.2)
+          &.active
+            background: rgb(77,85,93)
 </style>
