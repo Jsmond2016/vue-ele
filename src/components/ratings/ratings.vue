@@ -7,18 +7,37 @@
           <div class="title3">综合评分</div>
           <div class="rank">高于周边商家{{seller.rankRate}}%</div>
         </div>
-        <div class="overview-right"></div>
+        <div class="overview-right">
+          <div class="score-wrapper">
+            <span class="title4">服务态度</span>
+            <star :size="36" :score="seller.serviceScore"></star>
+            <span class="score">{{seller.service}}</span>
+          </div>
+          <div class="score-wrapper">
+            <span class="title4">商品评分</span>
+            <star :size="36" :score="seller.foodScore"></star>
+            <span class="score">{{seller.foodScore}}</span>
+          </div>
+          <div class="delivery-wrapper">
+            <span class="title5">送达时间</span>
+            <span class="delivery">{{seller.deliveryTime}}分钟</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import star from 'components/star/star'
     export default {
       props: {
         seller: {
           type: Object
         }
+      },
+      components: {
+        star
       }
     }
 </script>
@@ -56,5 +75,35 @@
           font-size: 10px
           color: rgb(147,153,159)
       .overview-right
-        padding: 0
+        flex: 1
+        pading-left: 24px
+        .score-wrapper
+          margin-bottom: 8px
+          font-size: 0
+          .title4
+            display: inline-block
+            vertical-align: top
+            line-height: 18px
+            font-size:  12px
+            color: rgb(7,17,27)
+          .star
+            display: inline-block
+            vertical-align: top
+            margin: 0 12px
+          .score
+            display: inline-block
+            line-height: 18px
+            vertical-align: top
+            font-size: 12px
+            color: rgb(255,153,0)
+        .delivery-wrapper
+          font-size: 0
+          .title5
+            line-height: 18px
+            font-size: 12px
+            color: rgb(7,17,27)
+          .delivery
+            margin-left: 12px
+            font-size: 12px
+            color: rgb(147,153,159)
 </style>
