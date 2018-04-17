@@ -20,7 +20,7 @@
       props: {
         ratings: {
           type: Array,
-          defalut() {
+          default() {
             return []
           }
         },

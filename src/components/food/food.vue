@@ -35,8 +35,22 @@
              <h1 class="title3">商品评价</h1>
              <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings" @ratingtype-select="selectratingType" @toggle="toggleContent"></ratingselect>
            </div>
+           <div class="rating-wrapper">
+             <ul v-show="food.ratings && food.ratings.length">
+               <li v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
+                 <div class="user">
+                   <span class="name">{{rating.username}}</span>
+                   <img class="avatar" width="12" height="12" :src="rating.avatar">
+                 </div>
+                 <div class="time">{{rating.rateTime}}</div>
+                 <p class="text">
+                   <span :class="{'icon-thumb_up': rating.rateType===0,'icon-thumb_down': rating.rateType===1}"></span>
+                 </p>
+               </li>
+             </ul>
+           </div>
          </div>
-       </div>
+     </div>
      </transition>
    </div>
 </template>
@@ -48,8 +62,8 @@
   import split from 'components/split/split'
   import ratingselect from 'components/ratingselect/ratingselect'
 
-  const POSITIVE = 0
-  const NEGATIVE = 1
+  /* const POSITIVE = 0
+  const NEGATIVE = 1 */
   const ALL = 2
     export default {
       props: {
