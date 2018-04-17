@@ -72,7 +72,7 @@
       methods: {
         show() {
           this.showFlag = true
-          this.selectType = 0
+          this.selectType = ALL
           this.onlyContent = true
           this.$nextTick(() => {
             if (!this.scroll) {
