@@ -1,11 +1,11 @@
 <template>
     <div class="ratingselect">
       <div class="rating-type border-1px">
-        <span  class="block positive" :class="{'active': selectType===2}">{{desc.all}}<span class="count">47</span></span>
-        <span  class="block positive" :class="{'active': selectType===0}">{{desc.positive}}<span class="count">40</span></span>
-        <span  class="block negactive" :class="{'active': selectType===1}">{{desc.negactive}}<span class="count">7</span></span>
+        <span  class="block positive" :class="{'active': selectType===2}" @click="select(2,$event)">{{desc.all}}<span class="count">{{ratings.length}}</span></span>
+        <span  class="block positive" :class="{'active': selectType===0}" @click="select(0,$event)">{{desc.positive}}<span class="count">{{positives.length}}</span></span>
+        <span  class="block negative" :class="{'active': selectType===1}" @click="select(1,$event)">{{desc.negative}}<span class="count">{{negatives.length}}</span></span>
       </div>
-      <div class="switch" :class="{'on': onlyContent}">
+      <div class="switch" :class="{'on': onlyContent}" @click="toggleContent">
         <span class="icon-check_circle"></span>
         <span class="text">只看有内容的评价</span>
       </div>
@@ -38,9 +38,35 @@
             return {
               all: '全部',
               positive: '满意',
-              negactive: '吐槽'
+              negative: '吐槽'
             }
           }
+        }
+      },
+      methods: {
+        select(type, event) {
+          if (!event._constructed) {
+            return 0
+          }
+          this.$emit('ratingtype-select', type)
+        },
+        toggleContent(event) {
+          if (!event._constructed) {
+            return 0
+          }
+          this.$emit('toggle')
+        }
+      },
+      computed: {
+        positives() {
+          return this.ratings.filter((rating) => {
+            return rating.rateType === POSITIVE
+          })
+        },
+        negatives() {
+          return this.ratings.filter((rating) => {
+            return rating.rateType === NEGATIVE
+          })
         }
       }
     }
@@ -71,7 +97,7 @@
           background: rgba(0,160,220,0.2)
           &.active
             background: rgb(0,160,220)
-        &.negactive
+        &.negative
           background: rgba(0,160,220,0.2)
           &.active
             background: rgb(77,85,93)

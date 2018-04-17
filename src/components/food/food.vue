@@ -33,7 +33,7 @@
            <split></split>
            <div class="rating">
              <h1 class="title3">商品评价</h1>
-             <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+             <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings" @ratingtype-select="selectratingType" @toggle="toggleContent"></ratingselect>
            </div>
          </div>
        </div>
@@ -48,8 +48,8 @@
   import split from 'components/split/split'
   import ratingselect from 'components/ratingselect/ratingselect'
 
-  /* const POSITIVE = 0
-  const NEGATIVE = 1 */
+  const POSITIVE = 0
+  const NEGATIVE = 1
   const ALL = 2
     export default {
       props: {
@@ -65,7 +65,7 @@
           desc: {
             all: '全部',
             positive: '推荐',
-            negactive: '吐槽'
+            negative: '吐槽'
           }
         }
       },
@@ -96,6 +96,18 @@
         },
         addFood() {
           this.$emit('cartadd', event.target)
+        },
+        selectratingType(type) {
+          this.selectType = type
+          this.$nextTick(() => {
+            this.scroll.refresh()
+          })
+        },
+        toggleContent() {
+          this.onlyContent = !this.onlyContent
+          this.$nextTick(() => {
+            this.scroll.refresh()
+          })
         }
       },
       components: {
