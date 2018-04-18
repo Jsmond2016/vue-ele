@@ -86,6 +86,7 @@
       watch: {
         'seller'() {
           this._initScroll()
+          this._initPics()
         }
       },
       methods: {
@@ -99,7 +100,22 @@
           }
         },
         _initPics() {
-
+            if (this.seller.pics) {
+              let picWidth = 120
+              let margin = 6
+              let width = (picWidth + margin) * this.seller.pics.length - margin
+              this.$refs.picList.style.width = width + 'px'
+              this.$nextTick(() => {
+                if (!this.picScroll) {
+                  this.picScroll = new BScroll(this.$refs.picWrapper, {
+                    scrollX: true,
+                    eventPassthrough: 'vertical'
+                  })
+                } else {
+                  this.picScroll.refresh()
+                }
+              })
+            }
         }
       },
       components: {
@@ -208,5 +224,23 @@
             line-height: 16px
             font-size: 12px
             color: rgb(7, 17, 27)
+
+    .pics
+      padding: 18px
+      .title
+        margin-bottom: 12px
+        line-height: 14px
+        color: rgb(7,17,27)
+        font-size: 14px
+      .pic-wrapper
+        width: 100%
+        overflow: hidden
+        white-space: nowrap
+        .pic-list
+          font-size: 0
+          .pic-item
+            display: inline-block
+            margin-right: 6px
+            width: 120px
 
 </style>
