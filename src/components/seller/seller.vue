@@ -28,7 +28,7 @@
             </div>
           </li>
         </ul>
-        <div class="favorite">
+        <div class="favorite" @click="toggleFavorite">
           <span class="icon-favorite" :class="{'active': favorite }"></span>
           <span class="text">{{favoriteText}}</span>
         </div>
@@ -130,6 +130,12 @@
                 }
               })
             }
+        },
+        toggleFavorite() {
+          if (!event._constructed) {
+            return 0
+          }
+          this.favorite = !this.favorite
         }
       },
       components: {
