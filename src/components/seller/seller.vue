@@ -242,5 +242,19 @@
             display: inline-block
             margin-right: 6px
             width: 120px
-
+    .info
+      padding: 18px 18px 0 18px
+      .title
+        padding-bottom: 12px
+        line-height: 14px
+        border-1px(rgba(7,17,27,0.1))
+        color: rgb(7,17,27)
+        font-size: 14px
+      .info-item
+        padding: 16px 12px
+        line-height: 16px
+        border-1px(rgba(7, 17, 27, 0.1))
+        font-size: 12px
+        &:last-child
+          border-none()
 </style>
