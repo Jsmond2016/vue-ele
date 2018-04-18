@@ -28,6 +28,10 @@
             </div>
           </li>
         </ul>
+        <div class="favorite">
+          <span class="icon-favorite" :class="{'active': favorite }"></span>
+          <span class="text">{{favoriteText}}</span>
+        </div>
       </div>
       <split></split>
       <div class="bulletin">
@@ -72,6 +76,16 @@
       props: {
         seller: {
           type: Object
+        }
+      },
+      data () {
+        return {
+          favorite: false
+        }
+      },
+      computed: {
+        favoriteText() {
+          return this.favorite ? '已收藏' : '收藏'
         }
       },
       created() {
@@ -180,7 +194,24 @@
               color: rgb(7, 17, 27)
               .stress
                 font-size: 24px
-
+       .favorite
+          position: absolute
+          width: 50px
+          right: 11px
+          top: 18px
+          text-align: center
+          .icon-favorite
+            display: block
+            margin-botom: 4px
+            line-height: 24px
+            font-size: 24px
+            color: #d4d6d9
+            &.active
+              color: rgb(240,20,20)
+          .text
+            line-height: 10px
+            font-size: 10px
+            color: rgb(77, 85, 93)
     .bulletin
       padding: 18px 18px 0 18px
       .title7
