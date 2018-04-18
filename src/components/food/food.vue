@@ -42,7 +42,7 @@
                    <span class="name">{{rating.username}}</span>
                    <img class="avatar" width="12" height="12" :src="rating.avatar">
                  </div>
-                 <div class="time">{{rating.rateTime | formatData}}</div>
+                 <div class="time">{{rating.rateTime | formatDate}}</div>
                  <p class="text">
                    <span :class="{'icon-thumb_up': rating.rateType===0,'icon-thumb_down': rating.rateType===1}"></span>
                  </p>
@@ -137,7 +137,7 @@
         }
        },
       filters: {
-        formatData (time) {
+        formatDate (time) {
           let date = new Date(time)
           return formatDate(date, 'yyy-MM-dd hh:mm')
         }
