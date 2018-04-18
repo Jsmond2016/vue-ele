@@ -162,6 +162,7 @@
         bottom: 38px
         padding: 0 8px
         line-height: 24px
+        height: 24px
         border-radius: 14px
         background: rgba(0,0,0,0.2)
         .count
