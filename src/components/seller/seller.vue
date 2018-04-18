@@ -72,7 +72,9 @@
   import star from 'components/star/star'
   import split from 'components/split/split'
   import BScroll from 'better-scroll'
-    export default {
+  import {saveToLocal} from '../../common/js/store'
+
+  export default {
       props: {
         seller: {
           type: Object
@@ -136,6 +138,7 @@
             return 0
           }
           this.favorite = !this.favorite
+          saveToLocal(this.seller.id, 'favorite', false)
         }
       },
       components: {
