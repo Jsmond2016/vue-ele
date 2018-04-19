@@ -51,12 +51,13 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-
+    host: 'localhost',
+    port: 8080,
     /**
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
