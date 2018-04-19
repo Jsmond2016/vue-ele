@@ -23,5 +23,9 @@ export function loadFromLocal(id, key, def) {
     return def
   }
   let ret = seller[key]
+  console.log('ret')
+  console.log(ret)
+  console.log('def')
+  console.log(def)
   return ret || def
 }

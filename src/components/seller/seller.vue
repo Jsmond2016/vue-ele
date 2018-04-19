@@ -140,7 +140,7 @@
             return 0
           }
           this.favorite = !this.favorite
-          saveToLocal(this.seller.id, 'favorite', false)
+          saveToLocal(this.seller.id, 'favorite', this.favorite)
         }
       },
       components: {
