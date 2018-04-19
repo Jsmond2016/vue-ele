@@ -1,21 +1,11 @@
-# ele
+# vue-ele
 
-> ele
+> 仿饿了么
 
-## Build Setup
+## 本地预览
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+1. fork 项目
+2. `git clone` 到本地
+3. `npm install`
+4. `node pro.server.js`
+5. 然后复制预览链接到本地即可预览啦
