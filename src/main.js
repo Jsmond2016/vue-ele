@@ -13,6 +13,7 @@ Vue.use(VueResource)
 /* eslint-disable no-new */
 
 let routes = [
+  {path: '/', redirect: 'goods'},
   { path: '/goods', component: goods },
   { path: '/ratings', component: ratings },
   {path: '/seller', component: seller}
