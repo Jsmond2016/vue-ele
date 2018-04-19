@@ -18,4 +18,5 @@ export function urlParse() {
       obj[key] = val
     })
   }
+  return obj
 }
