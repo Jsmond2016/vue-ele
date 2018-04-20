@@ -164,6 +164,9 @@
             return 0
           }
           window.alert(`支付${this.totalPrice}元`)
+        },
+        toggleListshow() {
+          this.listShow = ''
         }
       },
 
@@ -174,7 +177,7 @@
             total += food.price * food.count
           })
           if (total === 0) {
-            this.listShow= ''
+            this.toggleListshow()
           }
           return total
         },
