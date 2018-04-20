@@ -173,6 +173,9 @@
           this.selectFoods.forEach((food) => {
             total += food.price * food.count
           })
+          if (total === 0) {
+            this.listShow= ''
+          }
           return total
         },
         totalCount() {
@@ -205,8 +208,8 @@
           },
           set: function () {
             if (!this.totalCount) {
-              this.fold = true
-              return false
+              this.fold = false
+              return 0
             }
             let show = this.fold
             if (show) {
