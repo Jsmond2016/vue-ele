@@ -390,7 +390,7 @@
                 bottom: 8px
 
     .list-mask
-      position: absolute
+      position: fixed
       top: 0
       left: 0
       width: 100%
